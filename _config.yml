@@ -26,7 +26,7 @@ author:
   avatar           : "profile.png"
   name             : "Thomas" # Sidebar name
   pronouns         : #  
-  bio              : "Short bio"
+  bio              : "Short Bio!"
   location         : # 
   employer         : "Stanford University"
   employer-link    : "https://profiles.stanford.edu/thomas-allard"
@@ -229,7 +229,7 @@ collections:
     output: true
     permalink: /:collection/:path/
   portfolio:
-    output: false
+    output: true
     permalink: /:collection/:path/
   talks:
     output: true
