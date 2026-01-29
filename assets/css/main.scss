@@ -41,3 +41,15 @@
     "vendor/font-awesome/solid",
     "vendor/font-awesome/brands"
 ;
+
+
+/* Spread the top nav links across available width */
+.greedy-nav {
+  width: 100%;
+}
+
+.greedy-nav .visible-links {
+  display: flex;
+  flex: 1;                       /* make the <ul> take remaining space */
+  justify-content: space-evenly; /* try: space-between | space-around | space-evenly */
+}
