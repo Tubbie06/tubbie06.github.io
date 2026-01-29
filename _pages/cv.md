@@ -8,7 +8,7 @@ redirect_from:
 ---
 
 
-[CV.pdf]({{ site.baseurl }}/files/cv.pdf){: .btn .btn--primary}.
+[CV.pdf]({{ site.baseurl }}/files/cv.pdf){: .btn .cv-btn-outline}.
 
 
 <!-- 
