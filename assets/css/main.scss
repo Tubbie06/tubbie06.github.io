@@ -46,37 +46,41 @@
 /* =========================================================
    Custom overrides (put your button styles here)
    ========================================================= */
-/* CV button: visible outline/text at rest, invert on hover */
-a.btn.cv-btn-outline:link,
+
+/* CV button: light-blue outline on white; invert on hover */
+a.btn.cv-btn-outline,
 a.btn.cv-btn-outline:visited {
+  /* tweak this to your preferred “light blue” */
   --cv-blue: #5aa9e6;
 
-  background-color: #ffffff !important;
+  background-color: #fff;
   color: var(--cv-blue) !important;
+  border: 1px solid var(--cv-blue);
 
-  border: 1px solid var(--cv-blue) !important;
-
-  font-weight: 300;
+  font-weight: 300;       /* “slim characters” (falls back if not available) */
   letter-spacing: 0.02em;
 
-  border-radius: 999px;
+  border-radius: 999px;   /* pill */
   padding: 0.55em 1.05em;
   line-height: 1.2;
 
-  text-decoration: none !important;
+  text-decoration: none;
+
+  transition: background-color 140ms ease,
+              color 140ms ease,
+              border-color 140ms ease;
 }
 
-/* Hover/focus: swap colors */
-a.btn.cv-btn-outline:hover,
-a.btn.cv-btn-outline:focus {
-  background-color: var(--cv-blue) !important;
-  color: #ffffff !important;
-  border-color: var(--cv-blue) !important;
+a.btn.cv-btn-outline:hover {
+  background-color: var(--cv-blue);
+  color: #fff !important;
+  border-color: var(--cv-blue);
 }
 
-/* Keyboard focus ring */
+/* keyboard focus */
 a.btn.cv-btn-outline:focus-visible {
   outline: 3px solid rgba(90, 169, 230, 0.35);
   outline-offset: 3px;
 }
+
 
