@@ -1,4 +1,5 @@
 {% assign p = include.post %}
+{% assign cat = p.category | downcase | strip %}
 
 <div class="pub-item">
   <div class="pub-title"><strong>{{ p.title }}</strong></div>
@@ -17,20 +18,29 @@
   {%- endif -%}
   {%- assign authors_line = authors_line | strip -%}
 
-  <!-- Authors + year on the same line -->
   {% if authors_line != "" %}
     <div class="pub-authors">
       {{ authors_line }}{% if p.date %}, {{ p.date | date: "%Y" }}{% endif %}
     </div>
   {% endif %}
 
+  {%- comment -%} Button label depends on category {%- endcomment -%}
+  {% assign btn_label = "Link" %}
+  {% if cat == "preprint" %}
+    {% assign btn_label = "arXiv" %}
+  {% elsif cat == "article" %}
+    {% assign btn_label = "Link to paper" %}
+  {% elsif cat == "thesis" %}
+    {% assign btn_label = "Thesis" %}
+  {% endif %}
+
   <div class="pub-venue">
-    <span>
-      {% if p.venue %}{{ p.venue }}{% endif %}
-    </span>
+    {% if p.venue %}
+      <span>{{ p.venue }}</span>
+    {% endif %}
 
     {% if p.paperurl %}
-      <a class="pub-btn" href="{{ p.paperurl }}" target="_blank" rel="noopener">arXiv</a>
+      <a class="pub-btn" href="{{ p.paperurl }}" target="_blank" rel="noopener">{{ btn_label }}</a>
     {% elsif p.doi %}
       {% if p.doi contains "http" %}
         <a class="pub-btn" href="{{ p.doi }}" target="_blank" rel="noopener">DOI</a>
@@ -38,7 +48,7 @@
         <a class="pub-btn" href="https://doi.org/{{ p.doi }}" target="_blank" rel="noopener">DOI</a>
       {% endif %}
     {% elsif p.venue_url %}
-      <a class="pub-btn" href="{{ p.venue_url }}" target="_blank" rel="noopener">Link</a>
+      <a class="pub-btn" href="{{ p.venue_url }}" target="_blank" rel="noopener">{{ btn_label }}</a>
     {% endif %}
   </div>
 </div>
