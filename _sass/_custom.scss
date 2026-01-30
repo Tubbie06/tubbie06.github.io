@@ -35,17 +35,23 @@
   flex-wrap: wrap;
 }
 
+/* Publications button */
 .pub-btn {
   display: inline-block;
-  margin-left: 0.6rem;
-  padding: 0.15rem 0.5rem;
+  padding: 0.28rem 0.6rem;
   border: 1px solid rgba(0,0,0,0.25);
-  border-radius: 0.35rem;
-  font-size: 0.85em;
+  border-radius: 0.45rem;
   text-decoration: none;
-  vertical-align: baseline;
+  font-size: 0.85em;
+  line-height: 1.1;
 }
+
+/* Hover/focus styles */
 .pub-btn:hover {
   border-color: rgba(0,0,0,0.45);
   text-decoration: none;
+}
+.pub-btn:focus {
+  outline: 2px solid rgba(0,0,0,0.25);
+  outline-offset: 2px;
 }
