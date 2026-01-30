@@ -5,7 +5,7 @@ category: preprint
 permalink: /publication/entropy-risk-pinsker
 date: 2025-10-25
 paperurl: 'https://arxiv.org/abs/2510.22441'
-bibtexurl: 'https://thomas-allard/files/entropy-risk-pinsker.bib'
+bibtexurl: 'https://thomas-allard.com/files/entropy-risk-pinsker.bib'
 ---
 
 
