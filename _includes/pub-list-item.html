@@ -4,7 +4,6 @@
   <div class="pub-title"><strong>{{ p.title }}</strong></div>
 
   {%- assign authors_line = "" -%}
-
   {%- if p.authors -%}
     {%- if p.authors.first -%}
       {%- assign authors_line = p.authors | join: ", " -%}
@@ -16,21 +15,22 @@
   {%- elsif p.citation -%}
     {%- assign authors_line = p.citation | split: '(' | first | strip -%}
   {%- endif -%}
-
   {%- assign authors_line = authors_line | strip -%}
 
+  <!-- Authors + year on the same line -->
   {% if authors_line != "" %}
-    <div class="pub-authors">{{ authors_line }}</div>
+    <div class="pub-authors">
+      {{ authors_line }}{% if p.date %}, {{ p.date | date: "%Y" }}{% endif %}
+    </div>
   {% endif %}
 
   <div class="pub-venue">
     <span>
       {% if p.venue %}{{ p.venue }}{% endif %}
-      {% if p.date %}{% if p.venue %}, {% endif %}{{ p.date | date: "%Y" }}{% endif %}
     </span>
 
     {% if p.paperurl %}
-      <a class="pub-btn" href="{{ p.paperurl }}" target="_blank" rel="noopener">Paper</a>
+      <a class="pub-btn" href="{{ p.paperurl }}" target="_blank" rel="noopener">arXiv</a>
     {% elsif p.doi %}
       {% if p.doi contains "http" %}
         <a class="pub-btn" href="{{ p.doi }}" target="_blank" rel="noopener">DOI</a>
