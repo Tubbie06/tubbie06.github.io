@@ -1,6 +1,6 @@
 ---
 title: "Metric Entropy and Minimax Risk of Ellipsoids with an Application to Pinsker’s Theorem"
-collection: publications
+collection: preprint
 authors: "Thomas Allard"
 category: manuscripts
 permalink: /publication/entropy-risk-pinsker

@@ -87,9 +87,9 @@ author:
 publication_category:
   thesis:
     title: 'PhD Thesis'
-  articles:
+  article:
     title: 'Journal Articles'    
-  preprints:
+  preprint:
     title: 'Preprints'
 
 # Site Settings
