@@ -1,0 +1,52 @@
+/* Publications: simple, clean list */
+.pub-list {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  max-width: 52rem;
+}
+
+.pub-section {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pub-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.10);
+}
+
+.pub-title a {
+  text-decoration: none;
+}
+
+.pub-title a:hover {
+  text-decoration: underline;
+}
+
+.pub-authors,
+.pub-venue {
+  margin-top: 0.15rem;
+  line-height: 1.35;
+}
+
+.pub-authors {
+  opacity: 0.85;
+}
+
+.pub-venue {
+  opacity: 0.85;
+}
+
+.pub-btn {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid rgba(0,0,0,0.25);
+  border-radius: 0.35rem;
+  font-size: 0.85em;
+  text-decoration: none;
+  vertical-align: baseline;
+}
+.pub-btn:hover {
+  border-color: rgba(0,0,0,0.45);
+  text-decoration: none;
+}
