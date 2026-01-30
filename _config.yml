@@ -24,14 +24,14 @@ repository               : "tubbie06/tubbie06.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Thomas" # Sidebar name
+  name             : "Thomas Allard" # Sidebar name
   pronouns         : #  
   bio              : "Short Bio!!"
   location         : # 
   employer         : "Stanford University"
   employer-link    : "https://profiles.stanford.edu/thomas-allard"
   uri              : # 
-  email            : "myemail" 
+  email            : "tallard@stanford.edu" 
 
   # Academic websites
   academia         : # URL
