@@ -1,106 +1,90 @@
 ---
 ---
 
-@charset "utf-8";
+/*
+ * This file controls what is imported from /_sass
+ *
+ * Note that the files are processed in the order they are imported, so they are partly
+   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
+ */
 
-/* Load the Minimal Mistakes "skin" (color/theme variables) */
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import
+    "vendor/breakpoint/breakpoint",
 
-/* Load the rest of the Minimal Mistakes styles */
-@import "minimal-mistakes";
+    "themes",
+    "theme/{{ site.site_theme | default: 'default' | append: '_light' }}",
+    "theme/{{ site.site_theme | default: 'default' | append: '_dark' }}",
+
+    "include/mixins",
+    "vendor/susy/susy",
+
+    "layout/reset",
+    "layout/base",
+
+    "include/utilities",
+    "layout/tables",
+    "layout/buttons",
+    "layout/notices",
+    "layout/masthead",
+    "layout/navigation",
+    "layout/footer",
+    "syntax",
+
+    "layout/forms",
+
+    "layout/page",
+    "layout/archive",
+    "layout/sidebar",
+    "layout/json_cv",
+
+    "vendor/font-awesome/fontawesome",
+    "vendor/font-awesome/solid",
+    "vendor/font-awesome/brands"
+;
 
 /* Load your custom overrides (create _sass/_custom.scss) */
 @import "custom";
 
 
+/* =========================================================
+   Custom overrides (put your button styles here)
+   ========================================================= */
 
-// ---
-// ---
+/* CV button: light-blue outline on white; invert on hover */
+a.btn.cv-btn-outline,
+a.btn.cv-btn-outline:visited {
+  /* tweak this to your preferred “light blue” */
+  --cv-blue: #5aa9e6;
 
-// /*
-//  * This file controls what is imported from /_sass
-//  *
-//  * Note that the files are processed in the order they are imported, so they are partly
-//    sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
-//  */
+  background-color: #fff;
+  color: var(--cv-blue) !important;
+  border: 1px solid var(--cv-blue);
 
-// @import
-//     "vendor/breakpoint/breakpoint",
+  font-weight: 300;       /* “slim characters” (falls back if not available) */
+  letter-spacing: 0.02em;
 
-//     "themes",
-//     "theme/{{ site.site_theme | default: 'default' | append: '_light' }}",
-//     "theme/{{ site.site_theme | default: 'default' | append: '_dark' }}",
+  border-radius: 999px;   /* pill */
+  padding: 0.55em 1.05em;
+  line-height: 1.2;
 
-//     "include/mixins",
-//     "vendor/susy/susy",
+  text-decoration: none;
 
-//     "layout/reset",
-//     "layout/base",
+  transition: background-color 140ms ease,
+              color 140ms ease,
+              border-color 140ms ease;
+}
 
-//     "include/utilities",
-//     "layout/tables",
-//     "layout/buttons",
-//     "layout/notices",
-//     "layout/masthead",
-//     "layout/navigation",
-//     "layout/footer",
-//     "syntax",
+a.btn.cv-btn-outline:hover {
+  background-color: var(--cv-blue);
+  color: #fff !important;
+  border-color: var(--cv-blue);
+}
 
-//     "layout/forms",
-
-//     "layout/page",
-//     "layout/archive",
-//     "layout/sidebar",
-//     "layout/json_cv",
-
-//     "vendor/font-awesome/fontawesome",
-//     "vendor/font-awesome/solid",
-//     "vendor/font-awesome/brands"
-// ;
-
-// /* Load your custom overrides (create _sass/_custom.scss) */
-// @import "custom";
-
-
-// /* =========================================================
-//    Custom overrides (put your button styles here)
-//    ========================================================= */
-
-// /* CV button: light-blue outline on white; invert on hover */
-// a.btn.cv-btn-outline,
-// a.btn.cv-btn-outline:visited {
-//   /* tweak this to your preferred “light blue” */
-//   --cv-blue: #5aa9e6;
-
-//   background-color: #fff;
-//   color: var(--cv-blue) !important;
-//   border: 1px solid var(--cv-blue);
-
-//   font-weight: 300;       /* “slim characters” (falls back if not available) */
-//   letter-spacing: 0.02em;
-
-//   border-radius: 999px;   /* pill */
-//   padding: 0.55em 1.05em;
-//   line-height: 1.2;
-
-//   text-decoration: none;
-
-//   transition: background-color 140ms ease,
-//               color 140ms ease,
-//               border-color 140ms ease;
-// }
-
-// a.btn.cv-btn-outline:hover {
-//   background-color: var(--cv-blue);
-//   color: #fff !important;
-//   border-color: var(--cv-blue);
-// }
-
-// /* keyboard focus */
-// a.btn.cv-btn-outline:focus-visible {
-//   outline: 3px solid rgba(90, 169, 230, 0.35);
-//   outline-offset: 3px;
-// }
+/* keyboard focus */
+a.btn.cv-btn-outline:focus-visible {
+  outline: 3px solid rgba(90, 169, 230, 0.35);
+  outline-offset: 3px;
+}
 
 
 
