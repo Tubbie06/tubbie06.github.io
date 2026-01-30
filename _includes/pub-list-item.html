@@ -3,7 +3,7 @@
 <div class="pub-item">
   <div class="pub-title"><strong>{{ p.title }}</strong></div>
 
-  {%- assign authors_line = nil -%}
+  <!-- {%- assign authors_line = nil -%}
   {%- if p.authors -%}
     {%- assign authors_line = p.authors -%}
   {%- elsif p.author -%}
@@ -14,7 +14,9 @@
 
   {% if authors_line %}
     <div class="pub-authors">{{ authors_line }}</div>
-  {% endif %}
+  {% endif %} -->
+
+  <div class="pub-authors">AUTHORS: {{ p.authors }}</div>
 
   <div class="pub-venue">
     <span>
