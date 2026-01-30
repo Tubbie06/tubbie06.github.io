@@ -23,7 +23,7 @@ repository               : "tubbie06/tubbie06.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile-pic.png"
+  avatar           : "profile-pic.jpg"
   name             : "Thomas Allard" # Sidebar name
   pronouns         : #  
   bio              : "Short Bio!!"
