@@ -11,26 +11,38 @@ author_profile: true
 
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
+{% assign pubs = site.publications | sort: "date" | reverse %}
+
+<div class="pub-list">
+  {% if site.publication_category %}
+    {% assign cats = site.publication_category | sort %}
+    {% for cat in cats %}
+      {% assign cat_key = cat[0] %}
+      {% assign cat_title = cat[1].title %}
+      {% assign cat_pubs = pubs | where: "category", cat_key %}
+
+      {% if cat_pubs.size > 0 %}
+        <h2 class="pub-section">{{ cat_title }}</h2>
+        {% for post in cat_pubs %}
+          {% include pub-list-item.html post=post %}
+        {% endfor %}
       {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
     {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
+
+    {%- assign uncategorized = pubs | where_exp: "p", "p.category == nil" -%}
+    {% if uncategorized.size > 0 %}
+      <h2 class="pub-section">Other</h2>
+      {% for post in uncategorized %}
+        {% include pub-list-item.html post=post %}
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    {% for post in pubs %}
+      {% include pub-list-item.html post=post %}
+    {% endfor %}
+  {% endif %}
+</div>
+
 
 
 
