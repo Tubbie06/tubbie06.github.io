@@ -26,7 +26,7 @@ author:
   avatar           : "profile-pic.jpg"
   name             : "Thomas Allard" # Sidebar name
   pronouns         : #  
-  bio              : # "Short Bio!!"
+  bio              : "" # "Short Bio!!"
   location         : # 
   employer         : "Stanford University"
   employer-link    : "https://profiles.stanford.edu/thomas-allard"
