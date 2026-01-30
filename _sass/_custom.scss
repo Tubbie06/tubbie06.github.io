@@ -10,8 +10,11 @@
 }
 
 .pub-item {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.10);
+  padding: 0.7rem 0.85rem;
+  margin: 0.6rem 0;                 /* space between items */
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 0.5rem;
+  background: rgba(0,0,0,0.015);     /* barely-there fill */
 }
 
 .pub-title {
