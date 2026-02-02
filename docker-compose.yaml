@@ -1,9 +1,25 @@
 services:
-  jekyll-site:
-    image: jekyll-site
-    build: .
-    volumes: [ .:/usr/src/app ]
-    ports: [ 4000:4000 ]
-    user: 1000:1000
-    environment: [ JEKYLL_ENV=docker ]
-    command: jekyll serve -H 0.0.0.0 -w --config _config.yml,_config_docker.yml
+  site:
+    image: ruby:3.3-bookworm
+    working_dir: /srv/jekyll
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    environment:
+      - JEKYLL_ENV=development
+    volumes:
+      - .:/srv/jekyll
+      - bundle_cache:/usr/local/bundle
+    command: >
+      bash -lc "
+        gem install bundler &&
+        bundle install &&
+        bundle exec jekyll serve
+          --host 0.0.0.0
+          --livereload
+          --force_polling
+          --baseurl ''
+      "
+
+volumes:
+  bundle_cache:
