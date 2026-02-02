@@ -7,4 +7,4 @@ redirect_from:
   - /about.html
 ---
 
-Short bio coming soon.
+Short bio coming up.

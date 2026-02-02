@@ -1,0 +1,29 @@
+services:
+  builder:
+    image: ruby:3.3-bookworm
+    working_dir: /srv/jekyll
+    volumes:
+      - .:/srv/jekyll
+      - bundle_cache:/usr/local/bundle
+    command: >
+      bash -lc "
+        gem install bundler -v 4.0.5 &&
+        bundle _4.0.5_ install &&
+        bundle _4.0.5_ exec jekyll build
+          --config _config.yml,_config.local.yml
+          --watch
+          --force_polling
+      "
+
+  web:
+    image: nginx:alpine
+    depends_on:
+      - builder
+    ports:
+      - "8080:80"
+    volumes:
+      - ./_site:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+volumes:
+  bundle_cache:
