@@ -9,7 +9,7 @@ author_profile: true
 
 
 {% if site.author.googlescholar %}
-  <div class="wordwrap">Here is a list of my publications. You can also find them on my <a href="{{site.author.googlescholar}}">Google Scholar profile</a>.</div>
+  <div class="wordwrap">Here is a list of my publications. You can also find them on my <a href="{{site.author.googlescholar}}">Google Scholar</a> profile.</div>
 {% endif %}
 
 {% include base_path %}
@@ -18,12 +18,40 @@ author_profile: true
 
 <div class="pub-list">
   {% if site.publication_category %}
-    {% assign cats = site.publication_category | sort %}
-    {% for cat in cats %}
-      {% assign cat_key = cat[0] %}
-      {% assign cat_title = cat[1].title %}
-      {% assign cat_pubs = pubs | where: "category", cat_key %}
+    {% assign ordered_keys = site.publication_category_order %}
 
+    {%- comment -%} Loop in the order you chose {%- endcomment -%}
+    {% for cat_key in ordered_keys %}
+      {% assign cat = site.publication_category[cat_key] %}
+      {% if cat %}
+        {% assign cat_title = cat.title %}
+        {% assign cat_pubs = pubs | where: "category", cat_key %}
+
+        {% if cat_pubs.size > 0 %}
+          <h2 class="pub-section">{{ cat_title }}</h2>
+          {% for post in cat_pubs %}
+            {% include pub-list-item.html post=post %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {%- comment -%}
+      Anything not in the ordered list (and not nil) goes after, alphabetical by key
+    {%- endcomment -%}
+    {% assign cats = site.publication_category %}
+    {% assign extra_keys = "" | split: "" %}
+    {% for kv in cats %}
+      {% assign k = kv[0] %}
+      {% unless ordered_keys contains k %}
+        {% assign extra_keys = extra_keys | push: k %}
+      {% endunless %}
+    {% endfor %}
+    {% assign extra_keys = extra_keys | sort %}
+
+    {% for cat_key in extra_keys %}
+      {% assign cat_title = site.publication_category[cat_key].title %}
+      {% assign cat_pubs = pubs | where: "category", cat_key %}
       {% if cat_pubs.size > 0 %}
         <h2 class="pub-section">{{ cat_title }}</h2>
         {% for post in cat_pubs %}
@@ -45,6 +73,7 @@ author_profile: true
     {% endfor %}
   {% endif %}
 </div>
+
 
 
 

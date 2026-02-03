@@ -92,6 +92,13 @@ publication_category:
   preprint:
     title: 'Preprints'
 
+# Order of appearance on Publications page
+publication_category_order:
+  - preprint
+  - article
+  - thesis
+
+
 # Site Settings
 teaser                   :  # filename of teaser fallback teaser image placed in /images/ for social media previews
 breadcrumbs              : false # true, false (default)
