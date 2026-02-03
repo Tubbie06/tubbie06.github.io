@@ -9,11 +9,9 @@ services:
       bash -lc "
         gem install bundler -v 4.0.5 &&
         bundle _4.0.5_ install &&
-        bundle _4.0.5_ exec jekyll build
-          --config _config.yml,_config.local.yml
-          --watch
-          --force_polling
+        bundle _4.0.5_ exec jekyll build --config _config.yml,_config.local.yml --watch --force_polling
       "
+
 
   web:
     image: nginx:alpine
