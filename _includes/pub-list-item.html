@@ -34,7 +34,7 @@
     {% assign btn_label = "Thesis" %}
   {% endif %}
 
-  <div class="pub-venue">
+  <!-- <div class="pub-venue">
     {% if p.venue %}
       <span>{{ p.venue }}</span>
     {% endif %}
@@ -50,5 +50,56 @@
     {% elsif p.venue_url %}
       <a class="pub-btn" href="{{ p.venue_url }}" target="_blank" rel="noopener">{{ btn_label }}</a>
     {% endif %}
+  </div> -->
+
+  <div class="pub-venue">
+    {% if p.venue %}
+      <span>{{ p.venue }}</span>
+    {% endif %}
+
+    <div class="pub-links">
+      {%- comment -%} 1) arXiv / preprint link (optional) {%- endcomment -%}
+      {% if p.arxiv %}
+        <a class="link-chip is-arxiv" href="{{ p.arxiv }}" target="_blank" rel="noopener" aria-label="Open arXiv">
+          <span class="icon ai ai-arxiv" aria-hidden="true"></span>
+          <span class="label">arXiv</span>
+        </a>
+      {% endif %}
+
+      {%- comment -%} 2) Paper / journal link (paperurl OR venue_url) {%- endcomment -%}
+      {% if p.paperurl %}
+        <a class="link-chip is-journal" href="{{ p.paperurl }}" target="_blank" rel="noopener" aria-label="Open paper">
+          <span class="icon fa fa-file-alt" aria-hidden="true"></span>
+          <span class="label">{{ btn_label }}</span>
+        </a>
+      {% elsif p.venue_url %}
+        <a class="link-chip is-journal" href="{{ p.venue_url }}" target="_blank" rel="noopener" aria-label="Open paper">
+          <span class="icon fa fa-file-alt" aria-hidden="true"></span>
+          <span class="label">{{ btn_label }}</span>
+        </a>
+      {% endif %}
+
+      {%- comment -%} 3) DOI (optional, independent button) {%- endcomment -%}
+      {% if p.doi %}
+        {% if p.doi contains "http" %}
+          {% assign doi_href = p.doi %}
+        {% else %}
+          {% assign doi_href = "https://doi.org/" | append: p.doi %}
+        {% endif %}
+        <a class="link-chip is-doi" href="{{ doi_href }}" target="_blank" rel="noopener" aria-label="Open DOI">
+          <span class="icon fa fa-link" aria-hidden="true"></span>
+          <span class="label">DOI</span>
+        </a>
+      {% endif %}
+
+      {%- comment -%} 4) Twitter (optional) {%- endcomment -%}
+      {% if p.twitter %}
+        <a class="link-chip is-twitter" href="{{ p.twitter }}" target="_blank" rel="noopener" aria-label="Open Twitter">
+          <span class="icon fab fa-twitter" aria-hidden="true"></span>
+          <span class="label">Twitter</span>
+        </a>
+      {% endif %}
+    </div>
   </div>
+
 </div>
