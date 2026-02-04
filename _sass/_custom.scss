@@ -9,16 +9,6 @@
   margin-bottom: 0.5rem;
 }
 
-// .pub-item {
-//   padding: 0.5rem 0;
-//   border-bottom: 1px solid rgba(0,0,0,0.10);
-// }
-
-// .pub-section {
-//   margin-top: 1.75rem;
-//   margin-bottom: 0.5rem;
-// }
-
 .pub-item {
   padding: 0.7rem 0.85rem;
   margin: 0.6rem 0;                 /* space between items */
@@ -92,7 +82,11 @@
 //   justify-content: flex-start;
 
 //   height: var(--h);
-//   width: var(--h);             /* collapsed: perfect circle */
+
+//   width: max-content;        /* natural size */
+//   min-width: var(--h);       /* stays circular when collapsed */
+//   max-width: var(--h);       /* collapsed clamp */
+
 //   border-radius: 999px;
 //   box-sizing: border-box;
 
@@ -146,6 +140,12 @@
 //   border-color: transparent;
 // }
 
+// .link-chip:hover,
+// .link-chip:focus-visible{
+//   max-width: 20rem;          /* “big enough” ceiling */
+// }
+
+
 // .link-chip:hover .label,
 // .link-chip:focus-visible .label{
 //   max-width: 20rem;            /* any big number */
@@ -158,3 +158,187 @@
 // @media (prefers-reduced-motion: reduce){
 //   .link-chip, .link-chip .label{ transition: none; }
 // }
+
+// /* Per-provider colors (edit these) */
+// .link-chip.is-arxiv   { --fg: #B31B1B; --bd: rgba(179,27,27,.35); --bg: #fff7f7;}
+// .link-chip.is-journal { --fg: #2f855a; --bd: rgba(47,133,90,.35); }
+// .link-chip.is-doi     { --fg: #6b46c1; --bd: rgba(107,70,193,.35); }
+// .link-chip.is-twitter { --fg: #1d9bf0; --bd: rgba(29,155,240,.35); }
+
+
+// /* Kill underline for these icon chips (normal + hover + focus) */
+// .pub-links .link-chip,
+// .pub-links .link-chip:hover,
+// .pub-links .link-chip:focus-visible {
+//   text-decoration: none !important;
+//   border-bottom: 0 !important;     /* some themes fake underline with borders */
+//   background-image: none !important; /* some themes underline via background */
+// }
+
+// /* Also ensure the revealed text itself never underlines */
+// .pub-links .link-chip .label {
+//   text-decoration: none !important;
+// }
+
+// /* Remove underline (theme-proof) */
+// .pub-links .link-chip,
+// .pub-links .link-chip:hover,
+// .pub-links .link-chip:focus-visible,
+// .pub-links .link-chip .label,
+// .pub-links .link-chip .label *{
+//   text-decoration: none !important;
+//   border-bottom: 0 !important;
+//   background-image: none !important;
+// }
+
+// .link-chip.is-arxiv .label{
+//   font-family: "Courier Prime", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+//   font-weight: 300;
+//   letter-spacing: 0.015em;
+//   text-decoration: none !important;
+// }
+
+/* Container so buttons push each other */
+.pub-links{
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+/* The chip button */
+.pub-links a.link-chip{
+  /* Customize these globally */
+  --h: 2.2rem;         /* height (and collapsed width) */
+  --bg: #ffffff;
+  --fg: #2b6cb0;
+  --bd: rgba(43,108,176,.35);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  height: var(--h);
+
+  width: max-content;     /* natural size */
+  min-width: var(--h);    /* stays circular when collapsed */
+  max-width: var(--h);    /* collapsed clamp (animates open) */
+
+  border-radius: 999px;
+  box-sizing: border-box;
+
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--bd);
+
+  overflow: hidden;
+  white-space: nowrap;
+
+  /* remove any theme underlines */
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+  background-image: none !important;
+
+  transition:
+    max-width 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+/* Prevent "visited blue" */
+.pub-links a.link-chip:visited{
+  color: var(--fg);
+}
+
+/* Icon stays centered in the circle */
+.pub-links a.link-chip .icon{
+  width: var(--h);
+  min-width: var(--h);
+  height: var(--h);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  color: currentColor; /* icon follows the chip color */
+}
+
+/* Label is present but closed initially */
+.pub-links a.link-chip .label{
+  max-width: 0;
+  opacity: 0;
+  transform: translateX(-0.25rem);
+  transition: max-width 220ms ease, opacity 160ms ease, transform 220ms ease;
+  text-decoration: none !important;
+}
+
+/* Expand + reveal (hover OR keyboard focus) */
+.pub-links a.link-chip:hover,
+.pub-links a.link-chip:focus-visible{
+  max-width: 20rem; /* big ceiling; expands only as needed */
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+.pub-links a.link-chip:hover .label,
+.pub-links a.link-chip:focus-visible .label{
+  max-width: 20rem;
+  opacity: 1;
+  transform: translateX(0);
+  margin-right: 0.8rem; /* breathing room at the end */
+}
+
+/* Color swap ONLY on hover (prevents "stuck red" after click) */
+.pub-links a.link-chip:hover{
+  background: var(--fg);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* Nice visible keyboard focus without forcing red fill */
+.pub-links a.link-chip:focus-visible{
+  outline: 2px solid rgba(0,0,0,0.25);
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .pub-links a.link-chip,
+  .pub-links a.link-chip .label{ transition: none; }
+}
+
+/* Per-provider colors */
+.pub-links a.link-chip.is-arxiv   { --fg: #B31B1B; --bd: rgba(179,27,27,.35); --bg: #fff7f7; }
+.pub-links a.link-chip.is-journal { --fg: #2f855a; --bd: rgba(47,133,90,.35); }
+.pub-links a.link-chip.is-doi     { --fg: #6b46c1; --bd: rgba(107,70,193,.35); }
+.pub-links a.link-chip.is-twitter { --fg: #1d9bf0; --bd: rgba(29,155,240,.35); }
+
+/* Your arXiv label font */
+.pub-links a.link-chip.is-arxiv .label{
+  font-family: "Courier Prime", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-weight: 300;
+  letter-spacing: 0.015em;
+}
+
+
+/* Vertically center icon + label contents */
+.pub-links a.link-chip{
+  align-items: center;         /* keep */
+}
+
+/* Make the label a flex box too (fixes baseline alignment) */
+.pub-links a.link-chip .label{
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;              /* avoid extra vertical space */
+  padding-top: 0;              /* safety */
+  padding-bottom: 0;
+}
+
+/* Optional: tiny nudge if you still see it slightly low/high */
+.pub-links a.link-chip.is-arxiv .label{
+  position: relative;
+  top: -.05em;                /* try -0.03em..+0.03em; set to 0 if not needed */
+}
+
+
