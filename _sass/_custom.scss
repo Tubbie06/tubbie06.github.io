@@ -20,6 +20,8 @@
 .pub-title {
   margin: 0;
   line-height: 1.2;
+  flex: 1 1 auto;
+  min-width: 0; /* prevents overflow pushing badge off */
 }
 
 .pub-authors {
@@ -179,6 +181,7 @@
 /* Per-provider colors */
 .pub-links a.link-chip.is-arxiv   { --fg: #B31B1B; --bd: rgba(179,27,27,.35); --bg: #fff7f7; }
 .pub-links a.link-chip.is-journal { --fg: #2f855a; --bd: rgba(47,133,90,.35); }
+.pub-links a.link-chip.is-thesis { --fg: #2f855a; --bd: rgba(47,133,90,.35); }
 .pub-links a.link-chip.is-doi     { --fg: #6b46c1; --bd: rgba(107,70,193,.35); }
 .pub-links a.link-chip.is-twitter { --fg: #1d9bf0; --bd: rgba(29,155,240,.35); }
 
@@ -580,15 +583,10 @@
 }
 
 
-.pub-item {
-  position: relative;
-  padding-right: 7.5rem; // room so the badge never overlaps your text
-}
 
-.pub-badge {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.75rem;
+.pub-badge{
+  flex: 0 0 auto;
+  margin-left: auto; /* pushes it to the right edge */
 
   font-size: 0.68rem;
   font-weight: 600;
@@ -600,7 +598,6 @@
 
   background: var(--badge-bg, rgba(100, 116, 139, 0.12));
   color: var(--badge-fg, rgb(71, 85, 105));
-
   border: 1px solid var(--badge-bd, rgba(100, 116, 139, 0.18));
 
   user-select: none;
@@ -631,4 +628,29 @@
   --badge-bd: rgba(100, 116, 139, 0.18);
 }
 
+.pub-venue {
+  margin-bottom: 0.35rem;
+}
+
+.pub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+
+.pub-header{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+
+.pub-abstract,
+.pub-abstract-box{
+  width: 100%;
+  box-sizing: border-box;
+}
 

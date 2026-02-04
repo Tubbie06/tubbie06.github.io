@@ -83,14 +83,14 @@ author:
   youtube          : # Username
   zhihu            : # Username
 
-# Publication Category - The following the list of publication categories and their headings
+# Publication Category - The following the list of publication categories and their headings 
 publication_category:
   thesis:
     title: 'PhD Thesis'
   article:
-    title: 'Journal Articles'    
+    title: 'Journal Article'    
   preprint:
-    title: 'Preprints'
+    title: 'Preprint'
 
 # Order of appearance on Publications page
 publication_category_order:

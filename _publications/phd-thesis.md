@@ -1,10 +1,10 @@
 ---
-title: "Metric Entropy of Ellipsoids with Applications to Machine Learning"
-authors: "Thomas Allard"
+title: "Metric Entropy of Ellipsoids with Applications to Machine Learning,"
+authors: "Thomas Allard."
 category: thesis
 date: 2025-05-07
-thesisurl: 'https://doi.org/10.3929/ethz-b-000734099'
-venue: "ETH Zurich"
+thesis-url: 'https://doi.org/10.3929/ethz-b-000734099'
+venue: "ETH Zurich."
 bibtex: 'https://thomas-allard.com/files/phd-thesis.bib'
 abstract: | 
     This thesis is devoted to the derivation of sharp one- and two-term asymptotic characterizations for the metric entropy of ellipsoids in infinite-dimensional spaces.
