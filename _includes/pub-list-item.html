@@ -34,23 +34,7 @@
     {% assign btn_label = "Thesis" %}
   {% endif %}
 
-  <!-- <div class="pub-venue">
-    {% if p.venue %}
-      <span>{{ p.venue }}</span>
-    {% endif %}
-
-    {% if p.paperurl %}
-      <a class="pub-btn" href="{{ p.paperurl }}" target="_blank" rel="noopener">{{ btn_label }}</a>
-    {% elsif p.doi %}
-      {% if p.doi contains "http" %}
-        <a class="pub-btn" href="{{ p.doi }}" target="_blank" rel="noopener">DOI</a>
-      {% else %}
-        <a class="pub-btn" href="https://doi.org/{{ p.doi }}" target="_blank" rel="noopener">DOI</a>
-      {% endif %}
-    {% elsif p.venue_url %}
-      <a class="pub-btn" href="{{ p.venue_url }}" target="_blank" rel="noopener">{{ btn_label }}</a>
-    {% endif %}
-  </div> -->
+  
 
 
   
@@ -59,6 +43,17 @@
     {% if p.venue %}
       <span>{{ p.venue }}</span>
     {% endif %}
+
+
+
+    {% if p.abstract %}
+      <button type="button" class="pub-abstract-toggle" aria-expanded="false">
+        <span class="arrow" aria-hidden="true"></span>
+        <span class="text">Abstract</span>
+      </button>
+    {% endif %}
+
+
 
     <div class="pub-links">
       {%- comment -%} 1) arXiv / preprint link (optional) {%- endcomment -%}
@@ -94,5 +89,11 @@
       {% endif %}
     </div>
   </div>
+  
+  {% if p.abstract %}
+    <div class="pub-abstract-body" aria-hidden="true">
+      {{ p.abstract | markdownify }}
+    </div>
+  {% endif %}
 
 </div>

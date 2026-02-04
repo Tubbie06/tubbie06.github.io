@@ -28,10 +28,33 @@ author_profile: true
         {% assign cat_pubs = pubs | where: "category", cat_key %}
 
         {% if cat_pubs.size > 0 %}
+
           <h2 class="pub-section">{{ cat_title }}</h2>
-          {% for post in cat_pubs %}
-            {% include pub-list-item.html post=post %}
-          {% endfor %}
+
+          <div class="pub-timeline">
+            {% for post in cat_pubs %}
+              {% assign y = post.date | date: "%Y" %}
+              {% if y == "" %}{% assign y = "Undated" %}{% endif %}
+
+              {% include pub-list-item.html post=post %}
+
+              {%- comment -%} look ahead to next post year {%- endcomment -%}
+              {% if forloop.last %}
+                {% assign next_y = "" %}
+              {% else %}
+                {% assign next_post = cat_pubs[forloop.index] %}
+                {% assign next_y = next_post.date | date: "%Y" %}
+                {% if next_y == "" %}{% assign next_y = "Undated" %}{% endif %}
+              {% endif %}
+
+              {% if forloop.last or next_y != y %}
+                <div class="pub-year-after">
+                  <span class="pub-year-label">{{ y }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
         {% endif %}
       {% endif %}
     {% endfor %}

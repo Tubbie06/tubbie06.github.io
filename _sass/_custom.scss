@@ -273,3 +273,217 @@
   letter-spacing: 0.005em;
 }
 
+
+
+/* Align the row nicely */
+.pub-venue{
+  align-items: center;        /* better vertical alignment for toggle + chips */
+}
+.pub-venue > span{
+  align-self: baseline;       /* keeps venue text baseline feel */
+}
+
+/* Abstract toggle (looks like a small control, no underline) */
+.pub-abstract-toggle{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  font: inherit;
+  font-size: 0.9em;
+  color: rgba(0,0,0,0.72);
+  cursor: pointer;
+
+  text-decoration: none;
+}
+
+.pub-abstract-toggle:hover{
+  color: rgba(0,0,0,0.9);
+}
+
+/* Little chevron arrow */
+.pub-abstract-toggle .arrow{
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);          /* points right */
+  transition: transform 160ms ease;
+}
+
+/* When open, rotate arrow down */
+.pub-abstract-toggle[aria-expanded="true"] .arrow{
+  transform: rotate(45deg);           /* points down */
+}
+
+/* Smooth abstract reveal */
+.pub-abstract-body{
+  margin-top: 0;              /* added only when open */
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-2px);
+  overflow: hidden;
+
+  text-align: justify;
+  text-justify: inter-word;  /* optional; not supported everywhere but harmless */
+  hyphens: auto;             /* nicer spacing in justified text */
+
+  transition:
+    max-height 220ms ease,
+    opacity 160ms ease,
+    transform 220ms ease,
+    margin-top 220ms ease;
+}
+
+/* Keep headings / lists from looking weird when justified */
+.pub-abstract-body h1,
+.pub-abstract-body h2,
+.pub-abstract-body h3,
+.pub-abstract-body ul,
+.pub-abstract-body ol{
+  text-align: left;
+}
+
+/* Open state */
+.pub-item.is-abstract-open .pub-abstract-body{
+  margin-top: 0.45rem;
+
+  max-height: 25rem;        /* cap height; long abstracts will scroll */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  opacity: 1;
+  transform: translateY(0);
+
+  padding-right: 1.15rem;
+  scrollbar-gutter: stable;
+}
+
+
+@media (prefers-reduced-motion: reduce){
+  .pub-abstract-body{ transition: none; }
+}
+
+@media (max-width: 600px){
+  .pub-abstract-body{ text-align: left; hyphens: none; }
+}
+
+
+
+/* --- Timeline per publication category --- */
+.pub-timeline{
+  /* tweak these two to taste */
+  --gutter: 2.6rem;     /* total left space */
+  --line-x: 1.05rem;    /* where the line sits inside the gutter */
+
+  position: relative;
+  padding-left: var(--gutter);
+  margin-top: 0.35rem;
+}
+
+/* vertical line */
+.pub-timeline::before{
+  content: "";
+  position: absolute;
+  left: var(--line-x);
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 2px;
+  background: rgba(0,0,0,0.10);
+  border-radius: 2px;
+}
+
+/* dot in front of each publication (filled + centered on the card) */
+.pub-timeline .pub-item{
+  position: relative;
+}
+
+.pub-timeline .pub-item::before{
+  content: "";
+  position: absolute;
+
+  left: calc(var(--line-x) - var(--gutter));
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+
+  background: rgb(204, 203, 203);  /* filled */
+  border: 0;                      /* no outline */
+}
+
+
+/* year marker */
+.pub-timeline .pub-year{
+  position: relative;
+  min-height: 1.4rem;
+  margin: 0.9rem 0 0.2rem;
+}
+
+/* first year marker closer to the top */
+.pub-timeline .pub-year:first-child{
+  margin-top: 0.2rem;
+}
+
+
+
+/* year text aligned to the left of the line */
+.pub-timeline .pub-year-label{
+  position: absolute;
+  left: calc(var(--line-x) - var(--gutter) - 0.15rem);
+  top: 50%;
+  transform: translate(-100%, -50%);
+
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(0,0,0,0.55);
+  white-space: nowrap;
+}
+
+/* year label that appears AFTER a year's publications (no dot) */
+.pub-timeline .pub-year-after{
+  position: relative;
+  height: 1.4rem;
+  margin: 0.35rem 0 0.85rem;   /* below year pubs, space before next year */
+}
+
+/* place year text to the left of the line, shifted further left than dots */
+.pub-timeline .pub-year-after .pub-year-label{
+  position: absolute;
+  left: calc(var(--line-x) - var(--gutter) - 0.55rem); /* extra left so it never overlaps dots */
+  top: 50%;
+  transform: translate(-100%, -50%);
+
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(0,0,0,0.55);
+  white-space: nowrap;
+}
+
+
+/* mobile: slightly tighter gutter */
+@media (max-width: 600px){
+  .pub-timeline{
+    --gutter: 2.2rem;
+    --line-x: 0.9rem;
+  }
+  .pub-timeline .pub-year-label{
+    font-size: 0.82rem;
+  }
+}
+
+
+@media (max-width: 600px){
+  .pub-item.is-abstract-open .pub-abstract-body{
+    max-height: 12rem;
+  }
+}
+
+
