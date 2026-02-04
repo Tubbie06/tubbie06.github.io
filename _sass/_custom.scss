@@ -224,7 +224,8 @@
     border-color: var(--bd) !important;
 
     text-decoration: none !important;
-    border-bottom: 0 !important;
+    // border-bottom: 0 !important;
+    border-bottom: 1px solid var(--bd) !important;
     background-image: none !important;
   }
 
@@ -247,7 +248,7 @@
     margin-right: 0.8rem;
 
     text-decoration: none !important;
-    border-bottom: 0 !important;
+    // border-bottom: 0 !important;
     background-image: none !important;
   }
 
