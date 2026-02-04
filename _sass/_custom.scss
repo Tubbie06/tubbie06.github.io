@@ -60,143 +60,6 @@
 }
 
 
-// /* Container so buttons push each other */
-// .pub-links{
-//   display: flex;
-//   align-items: center;
-//   gap: 0.45rem;        /* space between chips */
-//   flex-wrap: wrap;     /* or nowrap if you never want wrapping */
-// }
-
-// /* The chip button */
-// .link-chip{
-//   /* Customize these globally */
-//   --h: 2.2rem;         /* height (and collapsed width) */
-//   --w-open: 7.5rem;    /* expanded width */
-//   --bg: #ffffff;
-//   --fg: #2b6cb0;
-//   --bd: rgba(43,108,176,.35);
-
-//   display: inline-flex;
-//   align-items: center;
-//   justify-content: flex-start;
-
-//   height: var(--h);
-
-//   width: max-content;        /* natural size */
-//   min-width: var(--h);       /* stays circular when collapsed */
-//   max-width: var(--h);       /* collapsed clamp */
-
-//   border-radius: 999px;
-//   box-sizing: border-box;
-
-//   background: var(--bg);
-//   color: var(--fg);
-//   border: 1px solid var(--bd);
-//   text-decoration: none;
-
-//   overflow: hidden;            /* hides the label while collapsed */
-//   white-space: nowrap;
-
-//   transition:
-//     width 220ms ease,
-//     background-color 220ms ease,
-//     color 220ms ease,
-//     border-color 220ms ease,
-//     box-shadow 220ms ease;
-// }
-
-// /* Icon stays centered in the circle */
-// .link-chip .icon{
-//   width: var(--h);
-//   min-width: var(--h);
-//   height: var(--h);
-//   display: inline-flex;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: 1.05rem; /* for icon fonts; harmless for SVG */
-// }
-
-// /* Label is present but “closed” initially */
-// .link-chip .label{
-//   max-width: 0;
-//   opacity: 0;
-//   transform: translateX(-0.25rem);
-//   transition: max-width 220ms ease, opacity 160ms ease, transform 220ms ease;
-// }
-
-// /* Hover/focus expands to the right and reveals text */
-// .link-chip:hover,
-// .link-chip:focus-visible{
-//   width: var(--w-open);        /* THIS is what pushes siblings right */
-//   box-shadow: 0 6px 18px rgba(0,0,0,.08);
-// }
-
-// /* Optional: color swap on hover */
-// .link-chip:hover,
-// .link-chip:focus-visible{
-//   background: var(--fg);
-//   color: #fff;
-//   border-color: transparent;
-// }
-
-// .link-chip:hover,
-// .link-chip:focus-visible{
-//   max-width: 20rem;          /* “big enough” ceiling */
-// }
-
-
-// .link-chip:hover .label,
-// .link-chip:focus-visible .label{
-//   max-width: 20rem;            /* any big number */
-//   opacity: 1;
-//   transform: translateX(0);
-//   margin-right: 0.8rem;        /* right padding effect while open */
-// }
-
-// /* Respect reduced motion */
-// @media (prefers-reduced-motion: reduce){
-//   .link-chip, .link-chip .label{ transition: none; }
-// }
-
-// /* Per-provider colors (edit these) */
-// .link-chip.is-arxiv   { --fg: #B31B1B; --bd: rgba(179,27,27,.35); --bg: #fff7f7;}
-// .link-chip.is-journal { --fg: #2f855a; --bd: rgba(47,133,90,.35); }
-// .link-chip.is-doi     { --fg: #6b46c1; --bd: rgba(107,70,193,.35); }
-// .link-chip.is-twitter { --fg: #1d9bf0; --bd: rgba(29,155,240,.35); }
-
-
-// /* Kill underline for these icon chips (normal + hover + focus) */
-// .pub-links .link-chip,
-// .pub-links .link-chip:hover,
-// .pub-links .link-chip:focus-visible {
-//   text-decoration: none !important;
-//   border-bottom: 0 !important;     /* some themes fake underline with borders */
-//   background-image: none !important; /* some themes underline via background */
-// }
-
-// /* Also ensure the revealed text itself never underlines */
-// .pub-links .link-chip .label {
-//   text-decoration: none !important;
-// }
-
-// /* Remove underline (theme-proof) */
-// .pub-links .link-chip,
-// .pub-links .link-chip:hover,
-// .pub-links .link-chip:focus-visible,
-// .pub-links .link-chip .label,
-// .pub-links .link-chip .label *{
-//   text-decoration: none !important;
-//   border-bottom: 0 !important;
-//   background-image: none !important;
-// }
-
-// .link-chip.is-arxiv .label{
-//   font-family: "Courier Prime", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-//   font-weight: 300;
-//   letter-spacing: 0.015em;
-//   text-decoration: none !important;
-// }
 
 /* Container so buttons push each other */
 .pub-links{
@@ -209,7 +72,7 @@
 /* The chip button */
 .pub-links a.link-chip{
   /* Customize these globally */
-  --h: 2.2rem;         /* height (and collapsed width) */
+  --h: 1.5rem;         /* height (and collapsed width) */
   --bg: #ffffff;
   --fg: #2b6cb0;
   --bd: rgba(43,108,176,.35);
@@ -239,6 +102,8 @@
   border-bottom: 0 !important;
   background-image: none !important;
 
+  font-size: 0.9rem;  /* keeps label proportional */
+
   transition:
     max-width 220ms ease,
     background-color 220ms ease,
@@ -262,6 +127,10 @@
   justify-content: center;
   font-size: 1.05rem;
   color: currentColor; /* icon follows the chip color */
+  font-size: 0.8rem;  /* slightly smaller icon */
+
+  position: relative;
+  top: 0.01em;   /* try 0.03em–0.08em */
 }
 
 /* Label is present but closed initially */
