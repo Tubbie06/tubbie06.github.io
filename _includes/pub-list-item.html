@@ -92,7 +92,9 @@
   
   {% if p.abstract %}
     <div class="pub-abstract-body" aria-hidden="true">
-      {{ p.abstract | markdownify }}
+      <div class="pub-abstract-scroll">
+        {{ p.abstract | markdownify }}
+      </div>
     </div>
   {% endif %}
 

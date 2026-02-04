@@ -353,15 +353,30 @@
 .pub-item.is-abstract-open .pub-abstract-body{
   margin-top: 0.45rem;
 
-  max-height: 25rem;        /* cap height; long abstracts will scroll */
-  overflow-y: auto;
+  max-height: 40rem;        /* cap height; long abstracts will scroll */
+  // overflow-y: auto;
   overflow-x: hidden;
 
   opacity: 1;
   transform: translateY(0);
 
-  padding-right: 1.15rem;
-  scrollbar-gutter: stable;
+  // padding-right: 1.15rem;
+  // scrollbar-gutter: stable;
+}
+
+/* Inner = the scroll container (only matters if content is long) */
+.pub-abstract-scroll{
+  /* keep your existing box padding/border on the OUTER,
+     and keep the scroll comfort padding here */
+  padding-right: 1.15rem;     /* separation from scrollbar */
+}
+
+/* Only when open: cap height & allow scrolling */
+.pub-item.is-abstract-open .pub-abstract-scroll{
+  max-height: 25rem;          /* your cap for “long abstracts” */
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;   /* reserves a scrollbar lane where supported */
 }
 
 
@@ -396,6 +411,7 @@
   width: 2px;
   background: rgba(0,0,0,0.10);
   border-radius: 2px;
+  z-index: 0;   /* behind dots + year labels */
 }
 
 /* dot in front of each publication (filled + centered on the card) */
@@ -417,6 +433,8 @@
 
   background: rgb(204, 203, 203);  /* filled */
   border: 0;                      /* no outline */
+
+  z-index: 1;   /* dots above the line */
 }
 
 
@@ -434,38 +452,54 @@
 
 
 
-/* year text aligned to the left of the line */
-.pub-timeline .pub-year-label{
-  position: absolute;
-  left: calc(var(--line-x) - var(--gutter) - 0.15rem);
-  top: 50%;
-  transform: translate(-100%, -50%);
-
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: rgba(0,0,0,0.55);
-  white-space: nowrap;
-}
-
-/* year label that appears AFTER a year's publications (no dot) */
-.pub-timeline .pub-year-after{
-  position: relative;
-  height: 1.4rem;
-  margin: 0.35rem 0 0.85rem;   /* below year pubs, space before next year */
-}
-
-/* place year text to the left of the line, shifted further left than dots */
+/* Year text over the line, but without a visible box */
 .pub-timeline .pub-year-after .pub-year-label{
   position: absolute;
-  left: calc(var(--line-x) - var(--gutter) - 0.55rem); /* extra left so it never overlaps dots */
+  left: calc(var(--line-x) - var(--gutter));
   top: 50%;
-  transform: translate(-100%, -50%);
+  transform: translate(-50%, -50%);
 
+  z-index: 2;
+
+  background: #fff;          /* keeps the line from showing through */
+  border: 0;                 /* remove contour */
+  border-radius: 0;          /* no pill shape */
+  padding: 0 0.2rem;         /* minimal, just enough to hide the line */
+
+  color: rgba(0,0,0,0.60);
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(0,0,0,0.55);
   white-space: nowrap;
 }
+
+
+/* Year label AFTER a year's publications, placed ON the line */
+.pub-timeline .pub-year-after{
+  position: relative;
+  height: 1.6rem;
+  margin: 0.35rem 0 0.85rem;
+}
+
+/* Put the year directly over the vertical line, hiding it behind */
+.pub-timeline .pub-year-after .pub-year-label{
+  position: absolute;
+  left: calc(var(--line-x) - var(--gutter)); /* exactly where the line is */
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 2;                 /* above the line */
+  padding: 0.08rem 0.45rem;
+  border-radius: 999px;
+
+  background: #fff;           /* IMPORTANT: hides the line behind (set to your page bg if not white) */
+  color: rgba(0,0,0,0.60);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  border: 1px solid rgba(0,0,0,0.10); /* subtle outline so it reads cleanly */
+}
+
 
 
 /* mobile: slightly tighter gutter */
@@ -485,5 +519,64 @@
     max-height: 12rem;
   }
 }
+
+
+/* Set this to the actual background behind the timeline (usually #fff) */
+.pub-timeline { --cutout-bg: #fff; }
+
+/* Year text on the line, but NO visible box */
+.pub-timeline .pub-year-after .pub-year-label{
+  position: absolute;
+  left: calc(var(--line-x) - var(--gutter));
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
+  /* kill any old "pill/box" styling */
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+
+  color: rgba(0,0,0,0.60);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  /* halo in background color to hide the vertical line behind the text */
+  text-shadow:
+    1px 0   0 var(--cutout-bg),
+   -1px 0   0 var(--cutout-bg),
+    0   1px 0 var(--cutout-bg),
+    0  -1px 0 var(--cutout-bg),
+    1px 1px 0 var(--cutout-bg),
+   -1px -1px 0 var(--cutout-bg),
+    1px -1px 0 var(--cutout-bg),
+   -1px 1px 0 var(--cutout-bg),
+    2px 0   0 var(--cutout-bg),
+   -2px 0   0 var(--cutout-bg),
+
+     /* 2px ring */
+   2px  0   0 var(--cutout-bg),
+  -2px  0   0 var(--cutout-bg),
+   0    2px 0 var(--cutout-bg),
+   0   -2px 0 var(--cutout-bg),
+   2px  2px 0 var(--cutout-bg),
+  -2px -2px 0 var(--cutout-bg),
+   2px -2px 0 var(--cutout-bg),
+  -2px  2px 0 var(--cutout-bg),
+
+  /* 3px ring */
+   3px  0   0 var(--cutout-bg),
+  -3px  0   0 var(--cutout-bg),
+   0    3px 0 var(--cutout-bg),
+   0   -3px 0 var(--cutout-bg),
+   3px  3px 0 var(--cutout-bg),
+  -3px -3px 0 var(--cutout-bg),
+   3px -3px 0 var(--cutout-bg),
+  -3px  3px 0 var(--cutout-bg);
+}
+
 
 
