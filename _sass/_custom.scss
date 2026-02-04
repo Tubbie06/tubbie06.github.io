@@ -342,3 +342,27 @@
 }
 
 
+/* Touch devices: no hover => show labels by default */
+@media (hover: none) and (pointer: coarse) {
+  .pub-links a.link-chip{
+    max-width: 20rem;          /* open */
+    box-shadow: none;
+  }
+
+  .pub-links a.link-chip .label{
+    max-width: 20rem;
+    opacity: 1;
+    transform: none;
+    margin-right: 0.8rem;
+  }
+
+  /* Keep the "outline" look on touch (no hover fill) */
+  .pub-links a.link-chip:hover{
+    background: var(--bg);
+    color: var(--fg);
+    border-color: var(--bd);
+  }
+}
+
+
+
