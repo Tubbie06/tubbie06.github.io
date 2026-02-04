@@ -341,28 +341,51 @@
   top: -.05em;                /* try -0.03em..+0.03em; set to 0 if not needed */
 }
 
-
-/* Touch devices: no hover => show labels by default */
+/* Touch devices: show labels, and keep desktop-like visuals (no blue/underline) */
 @media (hover: none) and (pointer: coarse) {
+
+  /* Keep chips "open" on touch */
   .pub-links a.link-chip{
-    max-width: 20rem;          /* open */
+    max-width: 20rem;
     box-shadow: none;
+
+    /* Override mobile theme link styles */
+    color: var(--fg) !important;
+    background: var(--bg) !important;
+    border-color: var(--bd) !important;
+
+    text-decoration: none !important;
+    border-bottom: 0 !important;
+    background-image: none !important;
   }
 
-  .pub-links a.link-chip .label{
+  /* Prevent visited links becoming blue/purple on phone */
+  .pub-links a.link-chip:visited{
+    color: var(--fg) !important;
+  }
+
+  /* Ensure the icon follows the chip color (so arXiv stays red, twitter stays blue, etc.) */
+  .pub-links a.link-chip .icon{
+    color: currentColor !important;
+  }
+
+  /* Show label and remove underline on the label text too */
+  .pub-links a.link-chip .label,
+  .pub-links a.link-chip .label *{
     max-width: 20rem;
     opacity: 1;
     transform: none;
     margin-right: 0.8rem;
+
+    text-decoration: none !important;
+    border-bottom: 0 !important;
+    background-image: none !important;
   }
 
-  /* Keep the "outline" look on touch (no hover fill) */
+  /* Disable hover fill swap on touch (some phones emulate hover oddly) */
   .pub-links a.link-chip:hover{
-    background: var(--bg);
-    color: var(--fg);
-    border-color: var(--bd);
+    background: var(--bg) !important;
+    color: var(--fg) !important;
+    border-color: var(--bd) !important;
   }
 }
-
-
-
