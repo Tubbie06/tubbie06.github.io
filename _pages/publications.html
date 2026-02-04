@@ -15,7 +15,7 @@ author_profile: true
 {% include base_path %}
 
 {% assign pubs = site.publications | sort: "date" | reverse %}
-
+<!-- 
 <div class="pub-list">
   {% if site.publication_category %}
     {% assign ordered_keys = site.publication_category_order %}
@@ -96,8 +96,40 @@ author_profile: true
     {% endfor %}
   {% endif %}
 </div>
+ -->
 
+<div class="pub-list">
+  {%- comment -%}
+    Unified list (no category sections), keeping the year separators logic.
+    Assumes pubs have a valid `date`. If some don't, they’ll be treated as "Undated".
+  {%- endcomment -%}
 
+  {%- assign pubs_sorted = pubs | sort: "date" | reverse -%}
+
+  <div class="pub-timeline">
+    {% for post in pubs_sorted %}
+      {% assign y = post.date | date: "%Y" %}
+      {% if y == "" %}{% assign y = "Undated" %}{% endif %}
+
+      {% include pub-list-item.html post=post %}
+
+      {%- comment -%} look ahead to next post year {%- endcomment -%}
+      {% if forloop.last %}
+        {% assign next_y = "" %}
+      {% else %}
+        {% assign next_post = pubs_sorted[forloop.index] %}
+        {% assign next_y = next_post.date | date: "%Y" %}
+        {% if next_y == "" %}{% assign next_y = "Undated" %}{% endif %}
+      {% endif %}
+
+      {% if forloop.last or next_y != y %}
+        <div class="pub-year-after">
+          <span class="pub-year-label">{{ y }}</span>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
 
 
 

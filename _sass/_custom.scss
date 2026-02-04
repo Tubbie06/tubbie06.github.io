@@ -580,4 +580,55 @@
 }
 
 
+.pub-item {
+  position: relative;
+  padding-right: 7.5rem; // room so the badge never overlaps your text
+}
+
+.pub-badge {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  padding: 0.18rem 0.45rem;
+  border-radius: 0.6rem;
+
+  background: var(--badge-bg, rgba(100, 116, 139, 0.12));
+  color: var(--badge-fg, rgb(71, 85, 105));
+
+  border: 1px solid var(--badge-bd, rgba(100, 116, 139, 0.18));
+
+  user-select: none;
+  cursor: default;
+}
+
+.pub-badge--preprint {
+  --badge-bg: rgba(37, 99, 235, 0.10);
+  --badge-fg: rgb(29, 78, 216);
+  --badge-bd: rgba(37, 99, 235, 0.18);
+}
+
+.pub-badge--article {
+  --badge-bg: rgba(16, 185, 129, 0.10);
+  --badge-fg: rgb(5, 150, 105);
+  --badge-bd: rgba(16, 185, 129, 0.18);
+}
+
+.pub-badge--thesis {
+  --badge-bg: rgba(139, 92, 246, 0.10);
+  --badge-fg: rgb(109, 40, 217);
+  --badge-bd: rgba(139, 92, 246, 0.18);
+}
+
+.pub-badge--other {
+  --badge-bg: rgba(100, 116, 139, 0.10);
+  --badge-fg: rgb(71, 85, 105);
+  --badge-bd: rgba(100, 116, 139, 0.18);
+}
+
 

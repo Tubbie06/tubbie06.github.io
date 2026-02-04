@@ -1,7 +1,25 @@
 {% assign p = include.post %}
-{% assign cat = p.category | downcase | strip %}
+
+{%- assign cat_key = p.category | default: "" -%}
+
+{%- comment -%}
+  Safety: if some items use `categories:` instead of `category:`
+  (Jekyll's default), fall back to the first category.
+{%- endcomment -%}
+{%- if cat_key == "" and p.categories and p.categories.size > 0 -%}
+  {%- assign cat_key = p.categories[0] -%}
+{%- endif -%}
+
+{%- if cat_key == "" -%}{%- assign cat_key = "other" -%}{%- endif -%}
+
+{%- assign cat_title = cat_key | capitalize -%}
+{%- if site.publication_category and site.publication_category[cat_key] and site.publication_category[cat_key].title -%}
+  {%- assign cat_title = site.publication_category[cat_key].title -%}
+{%- endif -%}
+
 
 <div class="pub-item">
+  <span class="pub-badge pub-badge--{{ cat_key | slugify }}">{{ cat_title }}</span>
   <div class="pub-title"><strong>{{ p.title }}</strong></div>
 
   {%- assign authors_line = "" -%}
