@@ -258,3 +258,18 @@
     border-color: var(--bd) !important;
   }
 }
+
+
+
+.pub-links a.link-chip.is-bibtex {
+  --fg: #4b5563;                 // slate/gray
+  --bd: rgba(75,85,99,.35);
+  --bg: #f9fafb;
+}
+
+.pub-links a.link-chip.is-bibtex .label{
+  font-family: "Inconsolata", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-weight: 300;
+  letter-spacing: 0.005em;
+}
+

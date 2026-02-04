@@ -5,7 +5,7 @@ category: thesis
 date: 2025-05-07
 paperurl: 'https://doi.org/10.3929/ethz-b-000734099'
 venue: "ETH Zurich"
-# bibtexurl: 'https://thomas-allard.com/files/entropy-risk-pinsker.bib'
+bibtexurl: 'https://thomas-allard.com/files/phd-thesis.bib'
 ---
 
 

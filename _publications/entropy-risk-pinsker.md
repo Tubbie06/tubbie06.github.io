@@ -4,7 +4,7 @@ authors: "Thomas Allard"
 category: preprint
 date: 2025-10-25
 arxiv: 'https://arxiv.org/abs/2510.22441'
-# bibtexurl: 'https://thomas-allard.com/files/entropy-risk-pinsker.bib'
+bibtex: 'https://thomas-allard.com/files/entropy-risk-pinsker.bib'
 ---
 
 

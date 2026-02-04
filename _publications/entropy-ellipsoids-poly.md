@@ -4,7 +4,7 @@ authors: "Thomas Allard, Helmut Bölcskei"
 category: preprint
 date: 2025-04-25
 arxiv: 'https://arxiv.org/abs/2504.18321'
-# bibtexurl: 'https://thomas-allard.com/files/entropy-risk-pinsker.bib'
+bibtexurl: 'https://thomas-allard.com/files/entropy-ellipsoids-poly.bib'
 ---
 
 
