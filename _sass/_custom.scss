@@ -763,3 +763,99 @@
   top: -0.02em;
 }
 
+
+
+
+/* --- Badges: neutral + subtle accent dot --- */
+.pub-badge{
+  /* neutral look */
+  background: rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.10);
+  color: rgba(0,0,0,0.62);
+
+  border-radius: 999px;
+  padding: 0.16rem 0.48rem;
+  font-size: 0.68rem;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;           /* spacing between dot and text */
+}
+
+/* small dot */
+.pub-badge::before{
+  content: "";
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: var(--badge-accent, rgba(0,0,0,0.35));
+  display: inline-block;
+}
+
+/* Muted accents (very low saturation / intensity) */
+.pub-badge--preprint { --badge-accent: rgba(190, 22, 22, 0.669); } /* muted arXiv-ish red */
+.pub-badge--article  { --badge-accent: rgba(4, 165, 58, 0.599); }  /* muted blue */
+.pub-badge--thesis   { --badge-accent: rgba(132, 20, 157, 0.626); }  /* slate */
+.pub-badge--other    { --badge-accent: rgba(100, 116, 139, 0.55); }
+
+
+.pub-meta{
+  margin-top: 0.1rem;
+  line-height: 1.25;
+  opacity: 0.85;
+
+  display: flex;
+  flex-wrap: wrap;         /* wraps nicely on narrow screens */
+  gap: 0.35rem;
+  align-items: baseline;
+}
+
+.pub-venue-text{
+  font-style: italic;
+}
+
+
+/* --- Vertical rhythm: title/meta tighter, actions looser --- */
+
+/* Title block (header row with title + badge) */
+.pub-item .pub-header{
+  margin-bottom: 0.12rem !important;   /* tighten title -> meta */
+}
+
+/* Authors+venue one-liner */
+.pub-item .pub-meta{
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* If your actions live inside .pub-venue instead of .pub-actions, keep this too */
+.pub-item .pub-venue{
+  margin-top: 0.55rem !important;
+}
+
+/* --- Add spacing BEFORE the whole actions row (Abstract + chips) --- */
+
+
+
+/* 2) If the chips are NOT inside .pub-actions (common), push them too */
+.pub-item .pub-links{
+  margin-top: .55rem !important;
+}
+
+
+/* Make the Abstract+chips row span the full width so "right edge" exists */
+.pub-item .pub-links{
+  width: 100%;
+  display: flex;          /* keep as flex row */
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+/* Push the badge to the far right of that row */
+.pub-item .pub-links .pub-badge{
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+

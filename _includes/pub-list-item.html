@@ -21,7 +21,6 @@
 <div class="pub-item">
   <div class="pub-header">
     <div class="pub-title"><strong>{{ p.title }}</strong></div>
-    <span class="pub-badge pub-badge--{{ cat_key | slugify }}">{{ cat_title }}</span>
   </div>
 
 
@@ -39,32 +38,22 @@
   {%- endif -%}
   {%- assign authors_line = authors_line | strip -%}
 
-  {% if authors_line != "" %}
-    <div class="pub-authors">
-      {{ authors_line }}
-    </div>
+
+{%- assign venue_text = p.venue -%}
+{%- assign has_venue = venue_text and venue_text != "" -%}
+
+<div class="pub-meta">
+  <span class="pub-authors">
+    {{ authors_line }}{% if has_venue %},{% else %}.{% endif %}
+  </span>
+
+  {% if has_venue %}
+    <span class="pub-venue-text">{{ venue_text }}.</span>
   {% endif %}
-
-  {%- comment -%} Button label depends on category {%- endcomment -%}
-  {% assign btn_label = "Link" %}
-  {% if cat == "preprint" %}
-    {% assign btn_label = "arXiv" %}
-  {% elsif cat == "article" %}
-    {% assign btn_label = "Link to paper" %}
-  {% elsif cat == "thesis" %}
-    {% assign btn_label = "Thesis" %}
-  {% endif %}
-
-  
+</div>
 
 
-  
 
-  <div class="pub-venue">
-    {% if p.venue %}
-      <span>{{ p.venue }}</span>
-    {% endif %}
-  </div>
 
 
 
@@ -114,6 +103,8 @@
       </a>
     {% endif %}
 
+    <span class="pub-badge pub-badge--{{ cat_key | slugify }}">{{ cat_title }}</span>
+
   </div>
   
   {% if p.abstract %}
@@ -123,6 +114,8 @@
       </div>
     </div>
   {% endif %}
+
+
 </div>
 
 
