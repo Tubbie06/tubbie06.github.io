@@ -179,11 +179,26 @@
 }
 
 /* Per-provider colors */
-.pub-links a.link-chip.is-arxiv   { --fg: #B31B1B; --bd: rgba(179,27,27,.35); --bg: #fff7f7; }
-.pub-links a.link-chip.is-journal { --fg: #2f855a; --bd: rgba(47,133,90,.35); }
-.pub-links a.link-chip.is-thesis { --fg: #2f855a; --bd: rgba(47,133,90,.35); }
-.pub-links a.link-chip.is-doi     { --fg: #6b46c1; --bd: rgba(107,70,193,.35); }
-.pub-links a.link-chip.is-twitter { --fg: #1d9bf0; --bd: rgba(29,155,240,.35); }
+.pub-links a.link-chip.is-arxiv   { 
+  --fg: #B31B1B; 
+  --bd: rgba(179,27,27,.35);   
+  --bg: #fdf7f7;
+}
+.pub-links a.link-chip.is-journal { 
+  --fg: #042aa5; 
+  --bd: rgba(32, 37, 162, 0.35); 
+  --bg: #f7f7fd;
+}
+.pub-links a.link-chip.is-thesis { 
+  --fg: #4b5563;                 
+  --bd: rgba(75,85,99,.35);
+  --bg: #f9fafb;
+}
+.pub-links a.link-chip.is-bibtex {
+  --fg: #4b5563;                 
+  --bd: rgba(75,85,99,.35);
+  --bg: #f9fafb;
+}
 
 /* Your arXiv label font */
 .pub-links a.link-chip.is-arxiv .label{
@@ -227,7 +242,6 @@
     border-color: var(--bd) !important;
 
     text-decoration: none !important;
-    // border-bottom: 0 !important;
     border-bottom: 1px solid var(--bd) !important;
     background-image: none !important;
   }
@@ -251,7 +265,6 @@
     margin-right: 0.8rem;
 
     text-decoration: none !important;
-    // border-bottom: 0 !important;
     background-image: none !important;
   }
 
@@ -265,11 +278,7 @@
 
 
 
-.pub-links a.link-chip.is-bibtex {
-  --fg: #4b5563;                 // slate/gray
-  --bd: rgba(75,85,99,.35);
-  --bg: #f9fafb;
-}
+
 
 .pub-links a.link-chip.is-bibtex .label{
   font-family: "Inconsolata", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -358,14 +367,10 @@
   margin-top: 0.45rem;
 
   max-height: 40rem;        /* cap height; long abstracts will scroll */
-  // overflow-y: auto;
   overflow-x: hidden;
 
   opacity: 1;
   transform: translateY(0);
-
-  // padding-right: 1.15rem;
-  // scrollbar-gutter: stable;
 }
 
 /* Inner = the scroll container (only matters if content is long) */
@@ -654,3 +659,43 @@
   box-sizing: border-box;
 }
 
+
+
+
+/* --- Make publication chips slightly smaller --- */
+.pub-links { gap: 0.35rem; } /* optional: slightly tighter spacing */
+
+.pub-links a.link-chip{
+  --h: 1.35rem;      /* was 1.5rem */
+  font-size: 0.82rem;/* was 0.9rem */
+}
+
+.pub-links a.link-chip .icon{
+  font-size: 0.72rem; /* was 0.8rem */
+}
+
+/* optional: slightly less end padding when expanded */
+.pub-links a.link-chip:hover .label,
+.pub-links a.link-chip:focus-visible .label{
+  margin-right: 0.65rem; /* was 0.8rem */
+}
+
+/* --- Fix icon centering for icon-fonts (FA + Academicons) --- */
+.pub-links a.link-chip .icon{
+  display: grid;          /* better than flex for pseudo-element icons */
+  place-items: center;    /* centers horizontally + vertically */
+  top: 0;                 /* remove your previous tiny nudge */
+  line-height: 0;         /* kill baseline weirdness */
+}
+
+/* The actual glyph is usually in ::before */
+.pub-links a.link-chip .icon::before{
+  display: block;         /* no inline baseline */
+  line-height: 1;
+  margin: 0;
+}
+
+/* Micro-adjustments (tune values in devtools; usually -0.03em..0.05em) */
+.pub-links a.link-chip.is-arxiv  .icon::before{ transform: translateX(-.05em); }
+.pub-links a.link-chip.is-journal .icon::before{ transform: translate(-0.06em, -0.05em);; }
+.pub-links a.link-chip.is-bibtex .icon::before{ transform: translateX(-0.05em); }

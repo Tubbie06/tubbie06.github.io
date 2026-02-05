@@ -93,18 +93,13 @@
 
     {% if p.paperurl %}
       <a class="link-chip is-journal" href="{{ p.paperurl }}" target="_blank" rel="noopener" aria-label="Open paper">
-        <span class="icon fa fa-file-alt" aria-hidden="true"></span>
-        <span class="label">{{ btn_label }}</span>
+        <span class="icon fa-solid fa-book-open fa-fw" aria-hidden="true"></span>
+        <span class="label">Journal</span>
       </a>
-    {% elsif p.venue_url %}
-      <a class="link-chip is-journal" href="{{ p.venue_url }}" target="_blank" rel="noopener" aria-label="Open paper">
-        <span class="icon fa fa-file-alt" aria-hidden="true"></span>
-        <span class="label">{{ btn_label }}</span>
-      </a>
-      {% elsif p.thesis-url %}
-      <a class="link-chip is-thesis" href="{{ p.thesis_url }}" target="_blank" rel="noopener" aria-label="Open paper">
-        <span class="icon fa fa-file-alt" aria-hidden="true"></span>
-        <span class="label">{{ btn_label }}</span>
+    {% elsif p.thesis-url %}
+      <a class="link-chip is-thesis" href="{{ p.thesis-url }}" target="_blank" rel="noopener" aria-label="Open paper">
+        <span class="icon fa fa-file-pdf fa-fw" aria-hidden="true"></span>
+        <span class="label">Thesis</span>
       </a>
     {% endif %}
 
@@ -114,7 +109,7 @@
         href="{{ p.bibtex | relative_url }}"
         download
         aria-label="Download BibTeX">
-        <span class="icon fa fa-quote-right" aria-hidden="true"></span>
+        <span class="icon fa fa-quote-right fa-fw" aria-hidden="true"></span>
         <span class="label">BibTeX</span>
       </a>
     {% endif %}
