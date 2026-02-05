@@ -308,7 +308,10 @@
   margin: 0;
 
   font: inherit;
-  font-size: 0.9em;
+  
+  font-size: 0.95em;   /* try 0.95em–1em */
+  line-height: 1;      /* keeps it visually aligned with chips */
+
   color: rgba(0,0,0,0.72);
   cursor: pointer;
 
@@ -699,3 +702,64 @@
 .pub-links a.link-chip.is-arxiv  .icon::before{ transform: translateX(-.05em); }
 .pub-links a.link-chip.is-journal .icon::before{ transform: translate(-0.06em, -0.05em);; }
 .pub-links a.link-chip.is-bibtex .icon::before{ transform: translateX(-0.05em); }
+
+
+
+
+
+
+/* --- Make the Abstract toggle look like a chip (matches the buttons) --- */
+.pub-abstract-toggle{
+  --h: 1.35rem; /* match your chip height */
+  height: var(--h);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  padding: 0 0.60rem;
+  border-radius: 999px;
+
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.22);
+  color: rgba(0,0,0,0.70);
+
+  font: inherit;
+  font-size: 0.90rem;      /* tune to match your chip label */
+  line-height: 1;
+  cursor: pointer;
+
+  text-decoration: none;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.pub-abstract-toggle:hover{
+  background: rgba(0,0,0,0.06);
+  border-color: rgba(0,0,0,0.30);
+  color: rgba(0,0,0,0.88);
+}
+
+/* Keyboard focus consistent with your chips */
+.pub-abstract-toggle:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.45);
+}
+
+/* When open: make it look "selected" */
+.pub-abstract-toggle[aria-expanded="true"]{
+  background: #374151;   /* gray-700 */
+  border-color: #374151;
+  color: #fff;
+}
+
+/* Arrow: slightly smaller + optically centered */
+.pub-abstract-toggle .arrow{
+  width: 0.42rem;
+  height: 0.42rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  opacity: 0.9;
+  position: relative;
+  top: -0.02em;
+}
+
