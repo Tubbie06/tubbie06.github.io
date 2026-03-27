@@ -7,10 +7,16 @@ layout: compress
 <!doctype html>
 <html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
   <head>
+    {% assign site_label = site.name | default: site.title %}
+    {% if page.url == "/" or page.url == "/index.html" %}
+      {% assign page_label = "Home" %}
+    {% else %}
+      {% assign page_label = page.title %}
+    {% endif %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %} | {{ site.name | default: site.title }}</title>
+    <title>{% if page_label %}{{ page_label | escape }} {{ site.title_separator }} {{ site_label | escape }}{% else %}{{ site_label | escape }}{% endif %}</title>
     {% include head.html %}
     {% include head/custom.html %}
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/cv-layout.css">

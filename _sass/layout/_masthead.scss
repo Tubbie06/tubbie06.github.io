@@ -8,6 +8,7 @@
   height: fit-content;
   top: 0;
   width: 100%;
+  box-shadow: 0 10px 24px -18px rgba(0, 0, 0, 0.28);
 
   -webkit-animation: intro 0.3s both;
           animation: intro 0.3s both;
@@ -45,6 +46,21 @@
 }
 
 .masthead__menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  .greedy-nav {
+    flex: 1 1 auto;
+    margin-left: auto;
+  }
+
+  .masthead__site-title {
+    flex: 0 0 auto;
+    font-weight: 700;
+    color: var(--global-text-color);
+    white-space: nowrap;
+  }
 
   ul {
     margin: 0;

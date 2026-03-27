@@ -200,23 +200,19 @@
     color: var(--global-text-color);
     cursor: pointer;
     z-index: 100;
+
+    &.hidden {
+      display: none;
+    }
   }
 
   .visible-links {
     display: table;
+    margin-left: auto;
 
     li {
       display: table-cell;
       vertical-align: middle;
-
-      &:first-child {
-        font-weight: bold;
-        text-wrap: wrap;
-
-        a {
-          margin-left: 0;
-        }
-      }
 
       &:last-child {
         a {

@@ -1,17 +1,28 @@
 {% include base_path %}
 
+{% assign site_label = site.name | default: site.title %}
+{% if page.url == "/" or page.url == "/index.html" %}
+  {% assign final_browser_title = "Home" | append: " " | append: site.title_separator | append: " " | append: site_label %}
+{% elsif page.browser_title %}
+  {% assign final_browser_title = page.browser_title | append: " " | append: site.title_separator | append: " " | append: site_label %}
+{% elsif page.title %}
+  {% assign final_browser_title = page.title | append: " " | append: site.title_separator | append: " " | append: site_label %}
+{% else %}
+  {% assign final_browser_title = site_label %}
+{% endif %}
+
 <!-- start custom head snippets -->
+
+<title>{{ final_browser_title | markdownify | strip_html | strip_newlines | escape_once }}</title>
 
 <!-- Support for Academicons -->
 <link rel="stylesheet" href="{{ base_path }}/assets/css/academicons.css"/>
 
-<!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
+{% assign favicon_version = "20260327" %}
 <link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
-<link rel="icon" type="image/svg+xml" href="{{ base_path }}/images/favicon.svg"/>
-<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png" sizes="32x32"/>
-<link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-192x192.png" sizes="192x192"/>
+<link rel="icon" type="image/svg+xml" href="{{ base_path }}/images/favicon.svg?v={{ favicon_version }}"/>
+<link rel="shortcut icon" href="{{ base_path }}/images/favicon.svg?v={{ favicon_version }}"/>
 <link rel="manifest" href="{{ base_path }}/images/manifest.json"/>
-<link rel="icon" href="/images/favicon.ico"/>
 <meta name="theme-color" content="#ffffff"/>
 
 <!-- end custom head snippets -->

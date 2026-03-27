@@ -1,6 +1,7 @@
 ---
 layout: archive
 title: "Publications"
+browser_title: "Publications"
 permalink: /publications/
 author_profile: true
 ---
@@ -8,9 +9,9 @@ author_profile: true
 
 
 
-{% if site.author.googlescholar %}
+<!-- {% if site.author.googlescholar %}
   <div class="wordwrap">Here is a list of my publications. You can also find them on my <a href="{{site.author.googlescholar}}">Google Scholar</a> profile.</div>
-{% endif %}
+{% endif %} -->
 
 {% include base_path %}
 
@@ -105,31 +106,21 @@ author_profile: true
   {%- endcomment -%}
 
   {%- assign pubs_sorted = pubs | sort: "date" | reverse -%}
+  {% assign written_year = "" %}
 
   <div class="pub-timeline">
     {% for post in pubs_sorted %}
       {% assign y = post.date | date: "%Y" %}
       {% if y == "" %}{% assign y = "Undated" %}{% endif %}
 
-      {% include pub-list-item.html post=post %}
-
-      {%- comment -%} look ahead to next post year {%- endcomment -%}
-      {% if forloop.last %}
-        {% assign next_y = "" %}
-      {% else %}
-        {% assign next_post = pubs_sorted[forloop.index] %}
-        {% assign next_y = next_post.date | date: "%Y" %}
-        {% if next_y == "" %}{% assign next_y = "Undated" %}{% endif %}
-      {% endif %}
-
-      {% if forloop.last or next_y != y %}
+      {% if written_year != y %}
         <div class="pub-year-after">
           <span class="pub-year-label">{{ y }}</span>
         </div>
+        {% assign written_year = y %}
       {% endif %}
+
+      {% include pub-list-item.html post=post %}
     {% endfor %}
   </div>
 </div>
-
-
-

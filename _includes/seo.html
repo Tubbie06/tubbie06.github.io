@@ -5,9 +5,18 @@
   {% assign seo_url = site.url | append: site.baseurl %}
 {% endif %}
 {% assign seo_url = seo_url | default: site.github.url %}
+{% assign site_label = site.name | default: site.title %}
 
-{% if page.title %}
-  {% assign seo_title = page.title | append: " " | append: site.title_separator | append: " " | append: site.title %}
+{% if page.url == "/" or page.url == "/index.html" %}
+  {% assign page_label = "Home" %}
+{% else %}
+  {% assign page_label = page.browser_title | default: page.title %}
+{% endif %}
+
+{% if page_label %}
+  {% assign seo_title = page_label | append: " " | append: site.title_separator | append: " " | append: site_label %}
+{% else %}
+  {% assign seo_title = site_label %}
 {% endif %}
 
 {% if seo_title %}
@@ -18,7 +27,7 @@
   {% assign canonical_url = page.url | replace: "index.html", "" | prepend: site.url %}
 {% endif %}
 
-<title>{{ seo_title | default: site.title }}{% if paginator %}{% unless paginator.page == 1 %} {{ site.title_separator }} {{ site.data.ui-text[site.locale].page | default: "Page" }} {{ paginator.page }}{% endunless %}{% endif %}</title>
+<title>{{ seo_title | default: site_label }}{% if paginator %}{% unless paginator.page == 1 %} {{ site.title_separator }} {{ site.data.ui-text[site.locale].page | default: "Page" }} {{ paginator.page }}{% endunless %}{% endif %}</title>
 
 {% assign seo_description = page.description | default: page.excerpt | default: site.description %}
 {% if seo_description %}
