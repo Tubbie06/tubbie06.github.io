@@ -90,6 +90,22 @@
     margin-bottom: 0;
   }
 
+  @media (max-width: 600px) {
+    .research-interests,
+    .research-interests tbody,
+    .research-interests tr,
+    .research-interests td {
+      display: block;
+      width: auto !important;
+    }
+
+    .research-interests td {
+      padding: 0 0 0.2rem 1rem !important;
+      text-align: left;
+      text-indent: -1rem;
+    }
+  }
+
 }
 
 .page__content {

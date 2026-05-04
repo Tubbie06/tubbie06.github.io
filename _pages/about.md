@@ -16,7 +16,7 @@ where I also completed my PhD (2019-2024) under the supervision of Helmut Bölcs
 on the topic of <i>Metric Entropy of Ellipsoids with Applications to Machine Learning</i>.
 
 <p><b>Research Interests</b>:</p>
-<table style="width: 100%; border-collapse: collapse; border: 0; margin: 0 0 1.3em; font-size: inherit;">
+<table class="research-interests" style="width: 100%; border-collapse: collapse; border: 0; margin: 0 0 1.3em; font-size: inherit;">
   <tr>
     <td style="width: 50%; padding: 0 1rem 0.2rem 0; border: 0; font-size: inherit;">&bull; Approximation Theory</td>
     <td style="width: 50%; padding: 0 0 0.2rem 0; border: 0; font-size: inherit;">&bull; Harmonic Analysis</td>
