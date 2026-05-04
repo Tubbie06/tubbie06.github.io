@@ -1,25 +1,19 @@
 {
-  "name": "academic-pages",
-  "version": "0.8.1.1",
-  "description": "Academic Pages Mistakes Jekyll theme npm build scripts",
+  "name": "thomas-allard-site",
+  "version": "1.0.0",
+  "description": "JavaScript build scripts for thomas-allard.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/academicpages/academicpages.github.io"
+    "url": "https://github.com/tubbie06/tubbie06.github.io"
   },
   "keywords": [
     "jekyll",
     "theme",
     "minimal"
   ],
-  "contributors": [
-    "Michael Rose",
-    "Robert Zupko"
-  ],
+  "contributors": [],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/academicpages/academicpages.github.io/issues"
-  },
-  "homepage": "https://github.com/academicpages/academicpages.github.io",
+  "homepage": "https://thomas-allard.com",
   "engines": {
     "node": ">= 0.10.0"
   },
