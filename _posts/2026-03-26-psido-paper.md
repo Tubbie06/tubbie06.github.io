@@ -1,5 +1,5 @@
 ---
-title: "New Preprint"
+title: "New Preprint Available"
 categories:
   - news
 date: 2026-03-26

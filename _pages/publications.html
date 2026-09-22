@@ -4,6 +4,7 @@ title: "Publications"
 browser_title: "Publications"
 permalink: /publications/
 author_profile: true
+publication_filters: true
 ---
 
 
@@ -17,7 +18,9 @@ author_profile: true
 
 {% assign pubs = site.publications | sort: "date" | reverse %}
 
-<div class="pub-list">
+<p id="publication-filter-status" class="visually-hidden" role="status"></p>
+
+<div class="pub-list" id="publication-list">
   {%- comment -%}
     Unified list (no category sections), keeping the year separators logic.
     Assumes pubs have a valid `date`. If some don't, they’ll be treated as "Undated".
@@ -32,7 +35,7 @@ author_profile: true
       {% if y == "" %}{% assign y = "Undated" %}{% endif %}
 
       {% if written_year != y %}
-        <div class="pub-year-after">
+        <div class="pub-year-after" data-pub-year="{{ y }}">
           <span class="pub-year-label">{{ y }}</span>
         </div>
         {% assign written_year = y %}
@@ -42,3 +45,5 @@ author_profile: true
     {% endfor %}
   </div>
 </div>
+
+<script defer src="{{ '/assets/js/pub-filters.js' | relative_url }}"></script>

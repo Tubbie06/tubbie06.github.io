@@ -3,7 +3,7 @@
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
       {% unless page.url == '/' or page.url == '/index.html' %}
-        <div class="masthead__site-title">Thomas Allard</div>
+        <a class="masthead__site-title" href="{{ base_path }}/">Thomas Allard</a>
       {% endunless %}
       <nav id="site-nav" class="greedy-nav">
         <button class="hidden"><span class="navicon"></span></button>

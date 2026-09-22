@@ -1,6 +1,6 @@
 ---
-title: "Ellipsoid Methods for Metric Entropy Computation,"
-authors: "Thomas Allard, Helmut Bölcskei"
+title: "Metric Entropy of Analytic Function Classes via Ellipsoidal Methods,"
+authors: "Thomas Allard and Helmut Bölcskei"
 category: preprint
 date: 2024-05-17
 arxiv: 'https://arxiv.org/abs/2405.11066'

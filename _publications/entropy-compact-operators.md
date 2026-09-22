@@ -1,8 +1,8 @@
 ---
 title: "Entropy of Compact Operators with Applications to Landau-Pollak-Slepian Theory and Sobolev Spaces,"
-authors: "Thomas Allard, Helmut Bölcskei"
+authors: "Thomas Allard and Helmut Bölcskei"
 category: article
-venue: "Applied and Computational Harmonic Analysis"
+venue: "Applied and Computational Harmonic Analysis 77, Article  101762"
 date: 2025-06-01
 paperurl: 'https://doi.org/10.1016/j.acha.2025.101762'
 arxiv: 'https://arxiv.org/abs/2406.05556'

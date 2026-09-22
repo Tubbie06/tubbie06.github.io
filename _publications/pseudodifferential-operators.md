@@ -1,6 +1,6 @@
 ---
 title: "Entropy and Minimax Risk of Hypoelliptic Pseudodifferential Operators,"
-authors: "Thomas Allard, Helmut Bölcskei"
+authors: "Thomas Allard and Helmut Bölcskei"
 category: preprint
 date: 2026-03-26
 arxiv: 'https://arxiv.org/abs/2603.23744'

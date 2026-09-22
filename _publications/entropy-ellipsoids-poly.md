@@ -1,9 +1,9 @@
 ---
 title: "Metric Entropy of Ellipsoids in Banach Spaces: Techniques and Precise Asymptotics,"
-authors: "Thomas Allard, Helmut Bölcskei"
+authors: "Thomas Allard and Helmut Bölcskei"
 category: article
 date: 2026-05-15
-venue: "Journal of Functional Analysis"
+venue: "Journal of Functional Analysis 290, Article 111400"
 paperurl: 'https://doi.org/10.1016/j.jfa.2026.111400'
 arxiv: 'https://arxiv.org/abs/2504.18321'
 bibtex: 'https://thomas-allard.com/files/entropy-ellipsoids-poly.bib'

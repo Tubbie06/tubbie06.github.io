@@ -57,34 +57,33 @@ on the topic of <i>Metric Entropy of Ellipsoids with Applications to Machine Lea
 {% assign news_posts = site.posts | where_exp: "post", "post.categories contains 'news'" %}
 {% if news_posts.size > 0 %}
 <div class="home-news-list">
-  {% for post in news_posts limit: 5 %}
-  {% assign news_text = post.content %}
-  {% if site.data.coauthors %}
-    {% for coauthor in site.data.coauthors %}
-      {% assign coauthor_name = coauthor[0] | strip %}
-      {% assign coauthor_url = coauthor[1] %}
-      {% assign coauthor_href = coauthor_url %}
-      {% assign coauthor_link_class = "pub-author-link" %}
-      {% if coauthor_url contains '://' %}
-        {% assign coauthor_href = coauthor_url %}
-      {% else %}
-        {% assign coauthor_href = coauthor_url | relative_url %}
-      {% endif %}
-      {% if coauthor_name == site.name or coauthor_name == site.author.name %}
-        {% assign coauthor_link_class = "pub-author-link is-self" %}
-      {% endif %}
-      {% capture coauthor_link %}<a class="{{ coauthor_link_class }}" href="{{ coauthor_href }}"{% if coauthor_url contains '://' %} target="_blank" rel="noopener"{% endif %}>{{ coauthor_name }}</a>{% endcapture %}
-      {% assign news_text = news_text | replace: coauthor_name, coauthor_link %}
-    {% endfor %}
-  {% endif %}
-  <div class="home-news-item">
-    <p class="home-news-date">
-      <strong>{{ post.date | date: "%B %d, %Y" }}{% unless post.title == blank %} - {{ post.title }}{% endunless %}</strong>
-    </p>
-    <div class="home-news-text">{{ news_text }}</div>
-  </div>
+  {% for post in news_posts limit: 3 %}
+  <article class="home-news-item">
+    <h3 class="home-news-title">{{ post.title | escape }}</h3>
+    <time class="home-news-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+    <div class="home-news-text">{% include home-news-content.html post=post %}</div>
+  </article>
   {% endfor %}
 </div>
+{% if news_posts.size > 3 %}
+<section class="home-news-previous" aria-labelledby="previous-news-title">
+<h3 id="previous-news-title" class="home-news-archive-title">Previous News</h3>
+<div class="home-news-archive">
+  {% for post in news_posts offset: 3 %}
+  <details class="home-news-older">
+    <summary class="home-news-summary">
+      <span class="home-news-summary-heading">
+        <span class="home-news-title">{{ post.title | escape }}</span>
+        <time class="home-news-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+      </span>
+      <span class="home-news-chevron" aria-hidden="true"></span>
+    </summary>
+    <div class="home-news-text">{% include home-news-content.html post=post %}</div>
+  </details>
+  {% endfor %}
+</div>
+</section>
+{% endif %}
 {% else %}
 <p>No news yet.</p>
 {% endif %}

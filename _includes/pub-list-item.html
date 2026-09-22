@@ -18,7 +18,7 @@
 {%- endif -%}
 
 
-<div class="pub-item">
+<div class="pub-item pub-item--{{ cat_key | slugify }}" data-pub-category="{{ cat_key | slugify }}" data-pub-year="{{ p.date | date: '%Y' | default: 'Undated' }}">
   <div class="pub-header">
     <div class="pub-title"><strong>{{ p.title }}</strong></div>
   </div>
@@ -39,8 +39,7 @@
   {%- assign authors_line = authors_line | strip -%}
 
 
-{%- assign venue_text = p.venue -%}
-{%- assign has_venue = venue_text and venue_text != "" -%}
+{%- assign venue_text = p.venue | default: "" | strip -%}
 
 <div class="pub-meta">
   <span class="pub-authors">
@@ -49,13 +48,13 @@
       {%- if p.authors.first -%}
         {%- assign authors_list = p.authors -%}
       {%- else -%}
-        {%- assign authors_list = p.authors | split: ", " -%}
+        {%- assign authors_list = p.authors | replace: ", and ", ", " | replace: " and ", ", " | split: "," -%}
       {%- endif -%}
     {%- endif -%}
 
     {%- if authors_list and authors_list.size > 0 -%}
-      {%- for author_name in authors_list -%}
-        {%- assign author_name = author_name | strip -%}
+      {%- for raw_author_name in authors_list -%}
+        {%- assign author_name = raw_author_name | strip -%}
         {%- assign author_url = "" -%}
         {%- assign author_href = "" -%}
         {%- assign author_link_class = "pub-author-link" -%}
@@ -77,15 +76,17 @@
         {%- else -%}
           {{ author_name }}
         {%- endif -%}
-        {%- unless forloop.last -%}, {% endunless -%}
+        {%- unless forloop.last -%}
+          {%- if forloop.rindex == 2 -%}{{ " and " }}{%- else -%}{{ ", " }}{%- endif -%}
+        {%- endunless -%}
       {%- endfor -%}
-      {% if has_venue %},{% else %}.{% endif %}
+      .
     {%- else -%}
-      {{ authors_line }}{% if has_venue %},{% else %}.{% endif %}
+      {{ authors_line }}.
     {%- endif -%}
   </span>
 
-  {% if has_venue %}
+  {% if venue_text != "" %}
     <span class="pub-venue-text">{{ venue_text }}.</span>
   {% endif %}
 </div>
@@ -131,7 +132,7 @@
     {% endif %}
 
 
-    {% if p.bibtex %}
+    {% if p.bibtex and cat_key != "preprint" %}
       <a class="link-chip is-bibtex"
         href="{{ p.bibtex | relative_url }}"
         download
