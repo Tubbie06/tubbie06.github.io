@@ -59,7 +59,7 @@ on the topic of <i>Metric Entropy of Ellipsoids with Applications to Machine Lea
 <div class="home-news-list">
   {% for post in news_posts limit: 3 %}
   <article class="home-news-item">
-    <h3 class="home-news-title">{{ post.title | escape }}</h3>
+    <h3 class="home-news-title">{{ post.title | escape }}{% include news-language.html language=post.language %}</h3>
     <time class="home-news-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
     <div class="home-news-text">{% include home-news-content.html post=post %}</div>
   </article>
@@ -73,7 +73,7 @@ on the topic of <i>Metric Entropy of Ellipsoids with Applications to Machine Lea
   <details class="home-news-older">
     <summary class="home-news-summary">
       <span class="home-news-summary-heading">
-        <span class="home-news-title">{{ post.title | escape }}</span>
+        <span class="home-news-title">{{ post.title | escape }}{% include news-language.html language=post.language %}</span>
         <time class="home-news-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%B %-d, %Y" }}</time>
       </span>
       <span class="home-news-chevron" aria-hidden="true"></span>

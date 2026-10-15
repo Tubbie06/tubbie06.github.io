@@ -48,6 +48,15 @@
   font-size: $type-size-4;
 }
 
+.news-language {
+  display: inline-block;
+  margin-left: 0.3em;
+  font-size: 0.82em;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
 .page--home {
   .page__content {
     text-align: justify;
